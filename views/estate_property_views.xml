@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="estate_property_tree_view" model="ir.ui.view">
+            <field name="name">estate.property.tree.view</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <tree string="Realstate Property">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="estate_property_calendar_view">
+            <field name="name">estate.property.calendar</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <calendar string="Estate Calendar" date_start="available_date">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="active"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="estate_property_form_view" model="ir.ui.view">
+            <field name="name">estate.property.form.view</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <form string="Realstate Property">
+                    <header>
+                        <button name="action_submit" string="Submit" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', 'in', ['pending','accepted','rejected','cancelled','done'])]}"/>
+
+                        <button name="action_accepted" string="Accepted" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', 'in', ['draft','accepted','rejected','cancelled','done'])]}"/>
+
+                        <button name="action_rejected" string="Rejected" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', 'in', ['draft','pending','rejected','cancelled','done'])]}"/>
+
+                        <button name="action_cancelled" string="Cancelled" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', 'in', ['draft','pending','accepted','cancelled','done'])]}"/>
+
+                        <button name="action_done" string="Done" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', 'in', ['draft','pending','rejected','accepted','done'])]}"/>
+
+                        <button name="action_draft" string="Set to draft" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', 'in', ['draft','accepted','pending','rejected','cancelled'])]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="available_date"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="estate_property_search_view" model="ir.ui.view">
+            <field name="name">estate.property.search.view</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <search string="Estate Status">
+                    <field string="Name" name="name"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Name" name="group_by_name"
+                                context="{'group_by': 'name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_realstate_management">
+            <field name="name">Realstate Property</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">estate.property</field>
+            <field name="view_mode">tree,form,kanban,pivot,map,calendar</field>
+        </record>
+
+        <record model="ir.ui.menu" id="realestate_management.menu_realstate_management">
+            <field name="name">Realstate Management</field>
+            <field name="web_icon">menu_realstate_management,static/description/icon.png</field>
+        </record>
+
+        <menuitem name="Realstate Management" action="action_realstate_management" id="menu_realstate_management"
+                  sequence="0"/>
+
+    </data>
+</odoo>

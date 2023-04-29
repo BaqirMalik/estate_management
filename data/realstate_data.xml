@@ -1,0 +1,7 @@
+<odoo>
+   <data>
+       <record id="realstate_property_model" model="estate.property">
+           <field name="name">RealState</field>
+       </record>
+   </data>
+</odoo>

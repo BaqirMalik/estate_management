@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="property_units_tree_view" model="ir.ui.view">
+            <field name="name">property.units.tree.view</field>
+            <field name="model">property.units</field>
+            <field name="arch" type="xml">
+                <tree string="Property Units">
+                    <field name="state"></field>
+                    <field name="title"/>
+                    <field name="no_of_rooms"/>
+                    <field name="size"/>
+                    <field name="demand"/>
+                    <field name="final_price"/>
+                    <field name="area"/>
+                    <field name="product_type"/>
+                    <field name="post_code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="property_units_form_view" model="ir.ui.view">
+            <field name="name">property.units.form.view</field>
+            <field name="model">property.units</field>
+            <field name="arch" type="xml">
+                <form string="Property Units">
+                    <header>
+                        <button name="action_sale" string="Sale" type="object"
+                                class="oe_highlight"
+                        />
+                        <button name="action_freeze" string="Freeze" type="object"
+                                class="oe_highlight"
+                        />
+                        <button name="action_cancel" string="Cancel" type="object"
+                                class="oe_highlight"
+                        />
+
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group col="2">
+                                <field name="state"></field>
+                                <field name="title"/>
+                                <field name="no_of_rooms"/>
+                                <field name="size"/>
+                                <field name="available_date"/>
+                            </group>
+                            <group col="2">
+                                <field name="demand"/>
+                                <field name="area"/>
+                                <field name="product_type"/>
+
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page name="description" string="Description">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+
+                            <page name="other_info" string="Other Info">
+                                <group>
+                                    <field name="sales_person"/>
+                                    <field name="buyer"/>
+                                </group>
+
+                            </page>
+                            <page name="location" string="Location">
+                                <group>
+                                    <field name="latitude"/>
+                                    <field name="longitude"/>
+                                </group>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="property_units_search_view" model="ir.ui.view">
+            <field name="name">property.units.search.view</field>
+            <field name="model">property.units</field>
+            <field name="arch" type="xml">
+                <search string="Property Units">
+                    <field string="Title" name="title"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Title" name="group_by_title"
+                                context="{'group_by': 'title'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="property_units_calendar_view">
+            <field name="name">property.units.calendar</field>
+            <field name="model">property.units</field>
+            <field name="arch" type="xml">
+                <calendar string="Property Units Calendar" date_start="available_date">
+                    <field name="title"/>
+                    <field name="no_of_rooms"/>
+                    <field name="size"/>
+                    <field name="available_date"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_realstate_proptery_units">
+            <field name="name">Property Units</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.units</field>
+            <field name="view_mode">tree,form,kanban,pivot,calendar</field>
+        </record>
+
+
+    </data>
+</odoo>

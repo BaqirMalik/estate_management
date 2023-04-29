@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+            <menuitem id="property_menu1" name="Advertisement" action="action_realstate_management" parent="menu_realstate_management" sequence="5"/>
+            <menuitem id="property_sub_menu1" name="Property Units" action="action_realstate_proptery_units" parent="property_menu1" sequence="0"/>
+
+            <menuitem id="property_menu2" name="Configuration" action="action_realstate_management" parent="menu_realstate_management" sequence="10"/>
+
+
+    </data>
+
+</odoo>
